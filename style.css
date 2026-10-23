@@ -43,4 +43,4 @@ aside select#flow{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://
 
 .kam-group{display:flex;align-items:baseline;gap:8px;min-width:0;flex:1 1 300px}.kam-label{flex-shrink:0}.kam-names{display:flex;flex-wrap:wrap;gap:6px 18px;min-width:0}.kam-name{display:inline-block;max-width:100%;overflow-wrap:break-word}
 
-.post-cell{min-width:115px}.post-link{display:inline-flex;align-items:center;border-radius:8px;background:#eeefea;color:var(--ink);padding:8px 10px;text-decoration:none;font-size:11px;white-space:nowrap;margin:0 5px 5px 0}.missing-post{font-size:11px;color:var(--muted)}.table-wrap th:last-child{width:130px}.table-wrap th:nth-child(3){width:150px}@media(max-width:650px){.table-wrap table{min-width:600px}}
+.post-cell{min-width:115px}.post-link{display:inline-flex;align-items:center;border-radius:8px;background:#eeefea;color:var(--ink);padding:8px 10px;text-decoration:none;font-size:11px;white-space:nowrap;margin:0 5px 5px 0}.missing-post{font-size:11px;color:var(--muted)}.table-wrap th:nth-child(n+4){width:115px}.table-wrap th:nth-child(3){width:150px}@media(max-width:650px){.table-wrap table{min-width:720px}}
