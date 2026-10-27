@@ -59,7 +59,7 @@ refresh();
 const postTip=document.createElement('div');
 postTip.id='post-access-tip';postTip.className='post-access-tip';postTip.setAttribute('role','tooltip');postTip.textContent='Чтобы увидеть пост, нужно быть участником канала';postTip.hidden=true;document.body.append(postTip);
 function hidePostTip(){postTip.hidden=true;}
-function showPostTip(link){postTip.hidden=false;const r=link.getBoundingClientRect(),t=postTip.getBoundingClientRect();postTip.style.left=Math.max(10,Math.min(r.left+r.width/2-t.width/2,window.innerWidth-t.width-10))+'px';postTip.style.top=(r.bottom+6)+'px';}
+function showPostTip(link){postTip.hidden=false;const r=link.getBoundingClientRect(),t=postTip.getBoundingClientRect();postTip.style.left=Math.max(10,Math.min(r.left+r.width/2-t.width/2,window.innerWidth-t.width-10))+'px';postTip.style.top=(r.bottom+5)+'px';}
 document.addEventListener('pointerover',e=>{const link=e.target.closest('.post-link');if(link)showPostTip(link);});
 document.addEventListener('pointerout',e=>{if(e.target.closest('.post-link')&&!e.relatedTarget?.closest?.('.post-link'))hidePostTip();});
 document.addEventListener('focusin',e=>{const link=e.target.closest('.post-link');if(link)showPostTip(link);});
