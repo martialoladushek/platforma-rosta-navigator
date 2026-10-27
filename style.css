@@ -62,3 +62,5 @@ aside select#flow{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://
 .block-description li{padding-left:4px;margin:0 0 12px;white-space:pre-line}
 .block-description li:last-child{margin-bottom:0}
 @media(max-width:650px){.programme-block>td{padding:18px 15px}.programme-block h3{font-size:17px}}
+
+.lesson-title{font-size:12px;font-weight:700;line-height:1.6;color:var(--ink)}
