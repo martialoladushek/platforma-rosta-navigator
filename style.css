@@ -69,4 +69,4 @@ aside select#flow{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://
 
 .table-wrap table:has(thead th:only-child){min-width:0}.table-wrap table:has(thead th:only-child) .title-cell{width:100%}
 
-.internal-notice{display:flex;align-items:center;gap:8px}.internal-sticker{display:inline-flex;flex-shrink:0;width:28px;height:28px}.internal-sticker video,.internal-sticker img{width:28px;height:28px;object-fit:contain}.internal-sticker img{display:none}@media(prefers-reduced-motion:reduce){.internal-sticker video{display:none}.internal-sticker img{display:block}}
+.internal-notice{display:flex;align-items:center;gap:8px}.internal-sticker{display:inline-flex;flex-shrink:0;width:14px;height:14px}.internal-sticker video,.internal-sticker img{width:14px;height:14px;object-fit:contain}.internal-sticker img{display:none}@media(prefers-reduced-motion:reduce){.internal-sticker video{display:none}.internal-sticker img{display:block}}
