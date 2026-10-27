@@ -45,7 +45,7 @@ function blockHeading(block){
   const points=text.trim().split(/\n\s*\n|\r?\n/).map(p=>p.trim()).filter(Boolean);
   return `<tr class="programme-block"><td colspan="4"><h3>${escapeHtml(block)}</h3>${points.length?`<details class="block-description"><summary>Описание и цели блока</summary><ul>${points.map(p=>`<li>${escapeHtml(p.replace(/^[•●–-]\s+/,''))}</li>`).join('')}</ul></details>`:''}</td></tr>`;
 }
-function postLinks(value,label){return [...new Set(links(value))].map(safeUrl).filter(Boolean).map((url,i)=>`<a class="post-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">${label}${i?' '+(i+1):''}</a>`).join('');}
+function postLinks(value,label){return [...new Set(links(value))].map(safeUrl).filter(Boolean).map((url,i)=>`<a class="post-link" aria-describedby="post-access-tip" href="${escapeHtml(url)}" target="_blank" rel="noopener">${label}${i?' '+(i+1):''}</a>`).join('');}
 function showDetail(l){const post=postLinks(l.postTelegram,'Пост в Telegram')+postLinks(l.postVk,'Пост в ВК');$('detail-content').innerHTML=`<span class="block-badge">${escapeHtml(l.block)}</span><h2>${escapeHtml(l.title)}</h2><p class="format">${escapeHtml(l.format||'Формат не указан')}</p><div class="date">Публикация: ${escapeHtml(dateLabel(l.date))}</div><h3>Темы и инструменты</h3><div class="tags">${tagHtml(l)}</div>${l.comment?'<h3>Комментарий</h3><div class="outcomes">'+escapeHtml(l.comment)+'</div>':''}<div class="detail-links">${post}</div>`;$('detail').showModal();}
 function reset(){state={flow:'',block:'',query:'',sort:'program'};selectedTags.clear();$('tag-search').value='';buildFilters();}
 function parseCSV(text){const rows=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){cell+='"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell);cell='';}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(cell);rows.push(row);row=[];cell='';}else cell+=c;}if(cell||row.length){row.push(cell);rows.push(row);}return rows;}
@@ -55,3 +55,14 @@ async function refresh(){const btn=$('refresh');btn.disabled=true;btn.textConten
 $('flow').onchange=()=>{state.flow=$('flow').value;render();};$('block').onchange=()=>{state.block=$('block').value;render();};$('search').oninput=()=>{state.query=$('search').value;render();};$('sort').onchange=()=>{state.sort=$('sort').value;render();};$('tag-search').oninput=renderTagOptions;$('reset').onclick=reset;$('refresh').onclick=refresh;$('detail').querySelector('.close').onclick=()=>$('detail').close();$('detail').onclick=e=>{if(e.target===$('detail')){const r=$('detail').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('detail').close();}};
 buildFilters();$('updated').textContent='Данные таблицы · 23 октября';
 refresh();
+
+const postTip=document.createElement('div');
+postTip.id='post-access-tip';postTip.className='post-access-tip';postTip.setAttribute('role','tooltip');postTip.textContent='Чтобы увидеть пост, нужно быть участником канала';postTip.hidden=true;document.body.append(postTip);
+function hidePostTip(){postTip.hidden=true;}
+function showPostTip(link){postTip.hidden=false;const r=link.getBoundingClientRect(),t=postTip.getBoundingClientRect();postTip.style.left=Math.max(10,Math.min(r.left+r.width/2-t.width/2,window.innerWidth-t.width-10))+'px';postTip.style.top=(r.top>t.height+16?r.top-t.height-8:r.bottom+8)+'px';}
+document.addEventListener('pointerover',e=>{const link=e.target.closest('.post-link');if(link)showPostTip(link);});
+document.addEventListener('pointerout',e=>{if(e.target.closest('.post-link')&&!e.relatedTarget?.closest?.('.post-link'))hidePostTip();});
+document.addEventListener('focusin',e=>{const link=e.target.closest('.post-link');if(link)showPostTip(link);});
+document.addEventListener('focusout',e=>{if(e.target.closest('.post-link'))hidePostTip();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hidePostTip();});
+document.addEventListener('click',hidePostTip);document.addEventListener('scroll',hidePostTip,true);window.addEventListener('resize',hidePostTip);
