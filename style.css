@@ -67,6 +67,8 @@ aside select#flow{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://
 
 .post-access-tip{position:fixed;z-index:1000;max-width:min(180px,calc(100vw - 20px));padding:0;border:0;border-radius:0;background:transparent;color:#8b878e;font-size:9px;font-weight:400;line-height:1.4;box-shadow:none;pointer-events:none;white-space:normal}.post-access-tip[hidden]{display:none}
 
-.table-wrap table:has(thead th:only-child){min-width:0}.table-wrap table:has(thead th:only-child) .title-cell{width:100%}
+.programme-overview table{min-width:0}.programme-overview table .title-cell{width:100%}
 
 .internal-notice{display:flex;align-items:center;gap:8px}.internal-sticker{display:inline-flex;flex-shrink:0;width:14px;height:14px}.internal-sticker video,.internal-sticker img{width:14px;height:14px;object-fit:contain}.internal-sticker img{display:none}@media(prefers-reduced-motion:reduce){.internal-sticker video{display:none}.internal-sticker img{display:block}}
+
+.programme-overview .programme-block:first-child>td{border-top:0}
